@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>안녕하세요</h1>
+    <h2>안녕하세요</h2>
+    <h3>안녕하세요</h3>
+    <h4>안녕하세요</h4>
+    <h5>안녕하세요</h5>
+    <h6>안녕하세요</h6>
+
+    <!-- 주석입니다 -->
+    <!-- 주석 단축키 ctrl + / -->
+
+    <h2>오늘의 일기</h2>
+    <p>
+      날이 따뜻한 것 같아서 옷을 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 얇게 입고 나왔다...추웠다...
+      <br />
+      1월 1일은 새싹 휴관날
+    </p>
+
+    <hr />
+    <h4>오늘의 할 일</h4>
+    <!-- ul type="none disc(default) circle square" -->
+    <ul type="circle">
+      <li>html 복습하기</li>
+      <li>운동하기</li>
+      <li>점심 맛있게 먹기</li>
+    </ul>
+
+    <h4>카페라떼 만드는 방법</h4>
+    <!-- ol type="none 1(default) A a I i" -->
+    <ol type="1" reversed start="2">
+      <li><b>우유</b>를 <strong>컵</strong>에 넣습니다.</li>
+      <li><i>얼음</i>을 <em>가득</em> 넣습니다.</li>
+      <li><del>에스프레소 샷</del>을 넣어주면</li>
+      <li><u>☕완성!</u></li>
+    </ol>
+
+    <hr />
+
+    <h4>리스트 안에 리스트 넣기</h4>
+    <h5>내가 좋아하는 음식 리스트</h5>
+    <ul>
+      <li>
+        양식
+        <ol type="a">
+          <li>피자</li>
+          <li>파스타</li>
+        </ol>
+      </li>
+      <li>
+        한식
+        <ol type="1">
+          <li>비빔밥</li>
+          <li>삼겹살</li>
+        </ol>
+      </li>
+
+      <li>
+        일식
+        <ol type="1">
+          <li>라멘</li>
+          <li>
+            초밥
+            <ul>
+              <li>새우초밥</li>
+              <li>연어초밥</li>
+              <li>계란초밥</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+
+    <details>
+      <summary>제목</summary>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quaerat distinctio quas
+      beatae corrupti facere explicabo possimus eius rerum autem, recusandae illum ipsum in ipsam
+      officia quos ipsa ducimus vitae.
+      <ul>
+        <li>아무 태그나</li>
+        <li>넣어도 숨겨집니다.</li>
+      </ul>
+    </details>
+
+    <h4>a 태그와 img 태그 사용하기</h4>
+    <img
+      src="https://cdn.spacetelescope.org/archives/images/thumb700x/opo9623a.jpg"
+      alt="The expansion of Eta Carinae debris"
+      width="480px"
+    />
+    <br />
+    <!-- 절대 경로 -->
+    <img
+      src="\01_html\img\heic1509a.jpg"
+      alt="This NASA/ESA Hubble Space Telescope image of the cluster Westerlund 2 and its surroundings has been released to celebrate Hubble’s 25th year in orbit and a quarter of a century of new discoveries, stunning images and outstanding science."
+      width="360px"
+    />
+    <!-- 상대경로: 현재 위치로부터 경로를 찾아나가는 주소 -->
+    <img
+      src="./img/heic1509a.jpg"
+      alt="This NASA/ESA Hubble Space Telescope image of the cluster Westerlund 2 and its surroundings has been released to celebrate Hubble’s 25th year in orbit and a quarter of a century of new discoveries, stunning images and outstanding science."
+      width="360px"
+    />
+    <br />
+    <a href="https://www.naver.com" target="_self">네이버로 이동</a>
+    <br />
+    <a href="./html_start.html" target="_self">html_start로 이동</a>
+    <br />
+    <br />
+    <!-- 간단 실습 
+    * 사진 저장 후 사진을 눌렀을 때 구글로 이동-->
+    <a href="https://www.google.com" target="_blank">
+      <img src="./img/pexels-chay-garcía-2910028.jpg" alt="sky" / width="480px">
+    </a>
+    <br />
+    <br />
+  </body>
+</html>

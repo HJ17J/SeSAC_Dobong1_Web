@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form 구성 태그</title>
+  </head>
+  <body>
+    <form>
+      <label> ID: <input type="text" placeholder="Id를 입력해주세요" /> </label>
+      <br />
+      <label for="pw">PASSWORD: </label>
+      <input type="password" id="pw" placeholder="Password를 입력해주세요" />
+      <br />
+      EMAIL: <input type="email" value="allie" />
+      <br />
+      <br />
+      <input type="button" value="로그인" />
+      <input type="submit" value="로그인" />
+      <button>로그인</button>
+      <button><span style="color: red">로</span>그인</button>
+
+      <input type="color" name="" id="" />
+      <input type="file" name="" id="" />
+      <input type="number" name="" id="" />
+      <input type="date" name="" id="" />
+      <input type="range" name="" id="" />
+      <br />
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <hr />
+      <h5>다음 중 input의 type이 아닌 것은? (모두 고르시오)</h5>
+      <label><input type="checkbox" name="input" />alt</label>
+      <label><input type="checkbox" name="input" />text</label>
+      <label><input type="checkbox" name="input" />img</label>
+      <label><input type="checkbox" name="input" />click</label>
+      <label><input type="checkbox" name="input" />date</label>
+    </form>
+    <!-- radio 속성의 경우 name을 작성해야 하나의 그룹으로 인식하여 한 가지만 선택됨 -->
+    <!-- label과 텍스트를 하나의 그룹으로 인식하려면 input id와 label for 속성을 동일하게 작성 -->
+    <h5>다음 중 img 태그의 속성인 것은?</h5>
+    <input type="radio" name="img" id="alt" checked />
+    <label for="alt">alt</label>
+
+    <input type="radio" name="img" id="bread" />
+    <label for="bread">bread</label>
+
+    <input type="radio" name="img" id="href" />
+    <label for="href">href</label>
+
+    <input type="radio" name="img" id="mouse" />
+    <label for="mouse">mouse</label>
+
+    <input type="radio" name="img" id="dragon" disabled />
+    <label for="dragon">dragon</label>
+
+    <br />
+    <br />
+    <select name="" id="">
+      <optgroup label="빨간꽃">
+        <option value="장미" disabled>장미</option>
+        <option value="동백꽃">동백꽃</option>
+        <option value="튤립">튤립</option>
+      </optgroup>
+      <optgroup label="하얀꽃">
+        <option value="벚꽃">벚꽃</option>
+        <option value="매화">매화</option>
+      </optgroup>
+    </select>
+  </body>
+</html>
