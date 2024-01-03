@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
+
+@font-face {
+    font-family: 'Giants-Inline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Giants-Inline.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-size: 25px;
+}
+.font-link {
+    font-family: 'Hahmlet', serif;
+}
+
+.font-import {
+    font-family: 'diphylleia';
+}
+
+.noonnu {
+    font-family: 'Giants-Inline';
+}
+
+.sentences {
+    font-weight: 700;
+    font-size: 16px;
+    /* font-size: 1rem; */
+    /* font-size: 1em; */
+    
+    /* text-align */
+    text-align: left;
+    text-align: right;
+    text-align: center;
+
+    /* text-decoration */
+    text-decoration: line-through;
+    text-decoration: underline;
+    text-decoration: overline;
+    text-decoration: none;
+
+    /* line-height */
+    line-height: 2;
+    /* line-height: 32px; */
+    /* line-height: 200%; */
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    color: rgb(00, 00, 00);
+    color: #000000;
+    /* 색깔 지정 방법 */
+    /*
+    1. 색 이름 작성: red, black, pink, ... ,
+    2. rgb(-, -, -) 0~255의 값
+    3. hexcolor #------ 16진수로 이루어진 값(0~f)
+    */
+
+}

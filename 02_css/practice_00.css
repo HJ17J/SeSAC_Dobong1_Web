@@ -1,0 +1,6 @@
+@import url('./practice_00_import.css');
+
+p{
+    background-color: maroon;
+    color: white;
+}

@@ -1,0 +1,77 @@
+.d-block {
+display: block;
+background-color: powderblue;
+border: 1px solid cornflowerblue;
+width: 100px;
+height: 100px;
+padding: 15px;
+margin: 20px
+}
+
+.d-inline {
+    display: inline;
+    background-color: peachpuff;
+    width: 1000px;
+    height: 200px;
+    /* padding: 15px;
+    margin: 20px; */
+}
+
+.d-inline-block {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: lightpink;
+    border: 1px solid violet;
+    padding: 15px;
+    margin: 20px;
+}
+
+.parent {
+    width: 500px;
+    height: 200px;
+    background-color: lightseagreen;
+}
+
+.parent > .min {
+    min-width: 400px;
+    height: 100px;
+    background-color: lightsalmon;
+}
+
+.parent > .max {
+    max-width: 400px;
+    height: 100px;
+    background-color: slateblue;
+}
+
+.box {
+    background-color: lavenderblush;
+    border: 1px solid darkcyan;
+}
+
+.box-px {
+    width: 50px;
+    height: 50px;
+}
+
+.box-view {
+    width: 50vw;
+    height: 50vh;
+}
+
+.box-per {
+    width: 50%;
+    /* height: 50%; */
+}
+
+.rem {
+    font-size: 2rem;
+    /* root 요소의 font-size 값을 기준으로 함 (즉 최상위 요소 <html>의 font-size) */
+    /* 1rem은 16px */
+}
+
+.em {
+    /* 현재 사용되는 요소의 font-size 값을 기준으로 함 (지정된 값이 없을 경우 부모 요소의 속성값 기준) */
+    font-size: 2em;
+}
