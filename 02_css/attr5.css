@@ -1,0 +1,83 @@
+.container {
+  max-width: 1000px;
+  height: 400px;
+  margin: 0 auto;
+  background-color: #797979;
+
+  /* flex-direction
+  - row: 좌>우 정렬
+  - row-reverse: 우>좌 정렬
+  - column: 상>하 정렬
+  - column-reverse: 하>상 정렬
+  */
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-direction: row-reverse; */
+  /* flex-direction: column; */
+  /* flex-direction: column-reverse; */
+
+  /* flex-wrap */
+  /* flex-wrap: nowrap; */
+  flex-wrap: wrap;
+  /* flex-wrap: wrap-reverse; */
+
+  /* justify-content
+  - flex-start: 아이템을 시작점 기준으로 나열
+  - flex-end: 아이템을 끝점 기준으로 나열
+  - center: 중앙 정렬
+  - space-between: 처음과 마지막 아이템을 양 끝에 붙이고, 나머지 영역을 공평하게 가져감
+  - space-around: 처음과 마지막 공백이 아이템 사이의 공백의 절반
+  - space-evenly: 처음, 중간, 마지막 모든 공백의 간격을 균등하게 나눔
+   */
+  /* justify-content: flex-start; */
+  /* justify-content: flex-end; */
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+
+  /* align-items: 한줄 교차축 정렬
+  - flex-direction이 row일 때: 교차축 수직
+  - flex-direction이 column일 때: 교차축 수평 */
+  /* align-items: stretch; */
+  /* align-items: flex-start; */
+  /* align-items: flex-end; */
+  /* align-items: center; */
+
+  /* align-content: 여러 줄 교차축 정렬
+  - (필수 조건) flex-wrap */
+  /* align-content: flex-start; */
+  /* align-content: flex-end; */
+  /* align-content: center; */
+  /* align-content: space-between; */
+  /* align-content: space-around; */
+  /* align-content: space-evenly; */
+}
+
+.items {
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 100px;
+}
+
+.item1 {
+  background-color: palegoldenrod;
+}
+
+.item2 {
+  background-color: lightyellow;
+}
+
+.item3 {
+  background-color: lavender;
+}
+
+.item4 {
+  background-color: lightsteelblue;
+}
+
+.item5 {
+  background-color: lightpink;
+}
