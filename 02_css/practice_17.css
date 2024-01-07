@@ -1,0 +1,37 @@
+.img_box {
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  background-color: lightgrey;
+}
+
+img {
+  width: 350px;
+  height: 200px;
+  position: relative;
+  transform: skewY(30deg);
+  transition-duration: 1s;
+}
+
+img:hover {
+  transform: skewY(0deg);
+  cursor: pointer;
+  z-index: 4;
+}
+
+.img_beach1 {
+  left: 100px;
+  z-index: 3;
+}
+
+.img_beach2 {
+  /* left:-50px */
+  z-index: 2;
+}
+
+.img_beach3 {
+  right: 100px;
+  z-index: 1;
+}
