@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(90deg, hsla(196, 83%, 84%, 1) 0%, hsla(305, 75%, 83%, 1) 100%);
+  border-radius: 50%;
+  animation: circling 8s infinite;
+}
+
+@keyframes circling {
+  25% {
+    transform: translate(calc(100vw - 100px), 0);
+  }
+  50% {
+    transform: translate(calc(100vw - 100px), calc(100vh - 100px));
+  }
+  75% {
+    transform: translate(0, calc(100vh - 100px));
+  }
+}

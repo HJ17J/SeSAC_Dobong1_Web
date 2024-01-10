@@ -1,0 +1,26 @@
+body {
+  overflow: auto;
+}
+p {
+  width: auto;
+  animation: sliding 5s 1;
+}
+
+@keyframes sliding {
+  20% {
+    width: 200%;
+    transform: translate(100vw, 0);
+  }
+  40% {
+    width: 190%;
+  }
+  60% {
+    width: 160%;
+  }
+  80% {
+    width: 130%;
+  }
+  100% {
+    width: 100%;
+  }
+}
