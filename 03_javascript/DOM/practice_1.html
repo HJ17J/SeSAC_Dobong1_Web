@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>요소 선택 및 다루기 실습 - html 내용 변경하기</title>
+  </head>
+  <body>
+    <div>
+      민트 초코는
+      <span> 맛있다 >_<</span>
+    </div>
+    <script>
+      let span = document.querySelector('span');
+      span.innerText = ' 맛없다ㅡㅡ;;';
+      span.style.color = 'red';
+      // span.style = 'font-weight:700'; // color값 사라짐(style 아래에 color 있기 때문)
+      span.style.fontWeight = 700;
+    </script>
+  </body>
+</html>

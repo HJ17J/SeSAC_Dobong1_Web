@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - DOM 3 (다른 노드 접근하기)</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box" id="green">1</div>
+      previous test
+      <div class="box" id="red">2</div>
+      next test
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+    </div>
+
+    <button onclick="getParent()">getParent</button>
+    <button onclick="getPElSibling()">pElSibling</button>
+    <button onclick="getPNodeSibling()">pNodeSibling</button>
+    <button onclick="getNElSibling()">nElSibling</button>
+    <button onclick="getNNodeSibling()">nNodeSibling</button>
+
+    <script>
+      let container = document.getElementById('container');
+      let greenBox = document.getElementById('green');
+      let redBox = document.getElementById('red');
+
+      // parentNode: 부모 요소를 가져옴
+      function getParent() {
+        console.log(greenBox.parentNode);
+      }
+
+      // 이전 형제 선택
+      function getPElSibling() {
+        console.log(redBox.previousElementSibling); // 요소 반환(div#green")
+      }
+      function getPNodeSibling() {
+        console.log(redBox.previousSibling); // 돔트리에서 이전 노드 반환("previous test", 주석도 반환됨)
+      }
+
+      // 다음 형제 선택
+      function getNElSibling() {
+        console.log(redBox.nextElementSibling); // div
+      }
+      function getNNodeSibling() {
+        console.log(redBox.nextSibling); // " next test"
+      }
+    </script>
+  </body>
+</html>
