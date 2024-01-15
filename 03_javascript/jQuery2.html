@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - jQuery 2</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      // 요소 추가
+      function appendJS() {
+        let ul = document.querySelector('ul');
+        let li = document.createElement('li');
+        li.innerText = 'red';
+        ul.append(li);
+      }
+
+      function appendJQuery() {
+        $('ul').append('<li>jQuery append</li>');
+      }
+
+      function prependJS() {
+        let ul = document.querySelector('ul');
+        let li = document.createElement('li');
+        li.innerText = 'red';
+        ul.prepend(li);
+      }
+
+      function prependJQuery() {
+        $('ul').prepend('<li>jQuery prepend</li>');
+      }
+
+      function beforeJS() {
+        let green = document.querySelector('.green');
+        let li = document.createElement('li');
+        li.innerText = 'before JS';
+        green.before(li);
+      }
+
+      function beforeJQuery() {
+        $('.green').before('<li>before jQuery</li>');
+      }
+
+      function afterJS() {
+        let green = document.querySelector('.green');
+        let li = document.createElement('li');
+        li.innerText = 'after JS';
+        green.after(li);
+      }
+
+      function afterJQuery() {
+        $('.green').after('<li>after jQuery</li>');
+      }
+
+      // 요소 삭제
+      function removeJS() {
+        document.querySelector('#li2').remove();
+      }
+
+      function removeJQuery() {
+        $('#li2').remove();
+      }
+
+      function emptyJS() {
+        let nums = document.querySelector('.nums');
+        nums.innerHTML = '';
+      }
+
+      function emptyJQuery() {
+        $('.nums').empty();
+      }
+
+      // 요소 탐색
+      function findParent() {
+        // parent(): 부모 요소 반환
+        console.log($('#li2').parent());
+      }
+
+      function findParents() {
+        console.log($('#li2').parents());
+      }
+
+      function findNext() {
+        // next(): nextSibling
+        console.log($('#li2').next());
+        console.log($('#li2').next()[0]); //<li>3</li>
+      }
+
+      function findPrev() {
+        // prev(): previousSibling
+        console.log($('#li2').prev());
+        console.log($('#li2').prev()[0]); //<li>1</li>
+      }
+
+      function findChildren() {
+        // children(): 자식 요소 모두 반환
+        console.log($('.nums').children());
+      }
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>orange</li>
+      <li class="green">green</li>
+      <li>navy</li>
+    </ul>
+
+    <button onclick="appendJS()">append js</button>
+    <button onclick="appendJQuery()">append jQuery</button>
+
+    <button onclick="prependJS()">prepend js</button>
+    <button onclick="prependJQuery()">prepend jQuery</button>
+
+    <button onclick="beforeJS()">before js</button>
+    <button onclick="beforeJQuery()">before jQuery</button>
+
+    <button onclick="afterJS()">after js</button>
+    <button onclick="afterJQuery()">after jQuery</button>
+
+    <div>
+      <ul class="nums">
+        <li>1</li>
+        <li id="li2">2</li>
+        <li>3</li>
+      </ul>
+    </div>
+    <button onclick="removeJS()">remove js</button>
+    <button onclick="removeJQuery()">remove jQuery</button>
+
+    <button onclick="emptyJS()">empty js</button>
+    <button onclick="emptyJQuery()">empty jQuery</button>
+    <br />
+
+    <button onclick="findParent()">findParent</button>
+    <button onclick="findParents()">findParents</button>
+    <button onclick="findNext()">findNext</button>
+    <button onclick="findPrev()">findPrev</button>
+    <button onclick="findChildren()">findChildren</button>
+  </body>
+</html>

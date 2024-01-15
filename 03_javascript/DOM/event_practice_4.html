@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>방명록 만들기</title>
+  </head>
+  <body>
+    <h1>여기는 방명록!!</h1>
+    <form>
+      <label for="writer">작성자</label>
+      <input type="text" id="writer" autocomplete="off" />
+      <br />
+      <br />
+
+      <label for="content">내용</label>
+      <input type="text" id="content" style="width: 500px" autocomplete="off" />
+      <br />
+      <br />
+
+      <button type="button" onclick="writeNote();">등록</button>
+    </form>
+
+    <br />
+    <br />
+
+    <table id="table" border="1" cellpadding="10" cellspacing="1">
+      <tr>
+        <th>작성자</th>
+        <th>내용</th>
+        <th>작성일</th>
+      </tr>
+      <!-- 
+        코드 추가 예시
+        <tr>
+          <td>홍길동</td>
+          <td>하이</td>
+          <td>2022-10-05 12:34</td>
+        </tr>
+      -->
+    </table>
+
+    <script>
+      // TODO: practice14_설명.png 이미지의 조건을 만족하는 js 코드 작성
+      // writeNote() 함수를 미리 정의해두었습니다.
+
+      // [등록] 버튼 클릭시 writeNote() 함수가 실행되도록 인라인 방식으로 미리 설정해 두었습니다.
+      function writeNote() {
+        const inputWriter = document.querySelector('#writer');
+        const inputContent = document.querySelector('#content');
+        const table = document.querySelector('table');
+
+        const tr = document.createElement('tr');
+        const tdWriter = document.createElement('td');
+        const tdContent = document.createElement('td');
+        const tdDate = document.createElement('td');
+
+        let date = new Date();
+
+        tdWriter.innerText = inputWriter.value;
+        tdContent.innerText = inputContent.value;
+        tdDate.innerText = `${date.getFullYear()}-${
+          date.getMonth() + 1
+        }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+
+        tr.append(tdWriter);
+        tr.append(tdContent);
+        tr.append(tdDate);
+        table.append(tr);
+
+        // writer = ''; inputWriter.value => 요소의 '텍스트 값'을 가져오는 것이므로 요소와 연결되어 있지 않음, 따라서 writer = ''를 해도 요소에 반영되지 않음
+        // content = '';
+        inputWriter.value = '';
+        inputContent.value = '';
+      }
+    </script>
+  </body>
+</html>

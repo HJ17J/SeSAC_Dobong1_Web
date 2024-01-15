@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>JS - jQuery 1</title>
+    <script>
+      function setValue() {
+        // input 태그의 value 값을 설정하기
+        $('input').val('setting');
+      }
+
+      function getValue() {
+        // input 태그의 value 값을 가져오기
+        alert($('input').val());
+      }
+
+      function changeStyle() {
+        $('span').css('font-size', '28px');
+      }
+
+      function changeAttribute() {
+        $('input').attr('placeholder', 'name');
+      }
+
+      function changeText() {
+        $('p').text('~hello jQuery~');
+      }
+
+      function changeHTML() {
+        $('p').html('<h3>Hi jQuery Hi</h3>');
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" />
+    <button onclick="setValue()">setValue</button>
+    <button onclick="getValue()">getValue</button>
+    <button onclick="changeAttribute()">changeAttribute</button>
+    <br />
+    <span>안녕🖐</span>
+    <button onclick="changeStyle()">changeStyle</button>
+    <p>p tag</p>
+    <button onclick="changeText()">changeText</button>
+    <button onclick="changeHTML()">changeHTML</button>
+  </body>
+</html>
