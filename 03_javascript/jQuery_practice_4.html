@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+      }
+      table {
+        width: 480px;
+        height: 720px;
+      }
+      caption {
+        font-size: 24px;
+      }
+      td {
+        width: 70px;
+        height: 120px;
+        text-align: center;
+        vertical-align: top;
+        font-weight: bold;
+      }
+      p {
+        width: 100%;
+        height: 15px;
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 400;
+        border-radius: 40%;
+        background-color: pink;
+      }
+      th:first-child,
+      td:first-child {
+        color: red;
+      }
+      td:hover {
+        cursor: pointer;
+      }
+    </style>
+    <title>스케줄</title>
+  </head>
+  <body>
+    <label for="date">날짜: </label>
+    <input type="text" id="date" />
+    <br />
+    <label for="content">내용: </label>
+    <input type="text" id="content" />
+    <br />
+    <button id="write" onclick="writeSchedule()">작성</button>
+    <table>
+      <caption>
+        2024년 1월
+      </caption>
+      <tr class="day">
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+      </tr>
+      <tr class="date">
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+      <tr class="date">
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+      </tr>
+      <tr class="date">
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+      </tr>
+      <tr class="date">
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+      </tr>
+      <tr class="date">
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+        <td>31</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <script>
+      // this를 기억하기 위한 전역변수
+      let target;
+
+      // 날짜 클릭
+      $('td').on('click', function () {
+        // 날짜 input 선택
+        $('#date').val($(this).text());
+
+        // target에 this 저장
+        target = this;
+      });
+
+      function writeSchedule() {
+        let content = $('#content').val();
+
+        // 요소 추가
+        $(target).append(`<p>${content}</p>`);
+
+        // 초기화
+        $('input').val('');
+      }
+    </script>
+  </body>
+</html>

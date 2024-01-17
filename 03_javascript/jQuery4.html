@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>JS - jQuery 4</title>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" />
+      <button>버튼</button>
+    </div>
+    <script>
+      // ready: 돔 트리 생성이 완료된 후 실행됨
+      $(document).ready(function () {
+        $('.container').append('<h2>안녕 ready</h2>');
+      });
+      $(function () {
+        $('.container').append('<h2>안녕 ready</h2>');
+      });
+      $('button').click(function () {
+        alert('click!');
+      });
+      $('button').on('click', function () {
+        alert('click!!!');
+      });
+
+      // key down
+      $('input').keydown(function (e) {
+        console.log('e: ', e);
+        console.log('e.target: ', e.target);
+        console.log('e.key: ', e.key);
+        console.log('this: ', this);
+
+        if (e.key == 'enter') alert('enter 입력');
+      });
+    </script>
+  </body>
+</html>
