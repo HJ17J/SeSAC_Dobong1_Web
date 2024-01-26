@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Register</title>
+    <style>
+      fieldset {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/postInfo" method="post">
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" />
+      <br />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="sex" value="남자" id="male" />
+        <label for="male">남자</label>
+        <input type="radio" name="sex" value="여자" id="female" />
+        <label for="female">여자</label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>생년월일</legend>
+        <label>
+          <select name="byear" id="byear">
+            <%for(let i=1980; i<=2003; i++){%>
+            <option value="<%=i%>"><%=i%></option>
+            <%}%>
+          </select>
+          년
+        </label>
+        <label>
+          <select name="bmonth" id="bmonth">
+            <%for(let i=1; i<=12; i++){%>
+            <option value="<%= i%>"><%=i%></option>
+            <%}%>
+          </select>
+          월
+        </label>
+        <label>
+          <select name="bdate" id="bdate">
+            <%for(let i=1; i<=31; i++){%>
+            <option value="<%=i%>"><%=i%></option>
+            <%}%>
+          </select>
+          일
+        </label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>관심사</legend>
+        <label> <input type="checkbox" name="interests" value="여행" />여행 </label>
+        <label><input type="checkbox" name="interests" value="패션" />패션</label>
+        <label><input type="checkbox" name="interests" value="음식" />음식</label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>선택</legend>
+        <label>
+          좋아하는 색상
+          <input type="color" name="color" />
+        </label>
+        <br />
+        <label>
+          좋아하는 숫자
+          <input type="number" name="number" />
+        </label>
+      </fieldset>
+      <button>회원가입</button>
+    </form>
+  </body>
+</html>

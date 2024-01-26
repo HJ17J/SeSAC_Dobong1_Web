@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>고객 정보</title>
+    <style>
+      div {
+        width: 400px;
+        height: 48px;
+        line-height: 48px;
+        border: 1px solid grey;
+        border-radius: 10px;
+        margin: 5px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>User Information</h1>
+    <h3><span><%= userInfo.name%></span> 님 환영합니다.</h3>
+    <div>성별: <span><%= userInfo.sex%></span></div>
+    <div>
+      생년월일:
+      <span><%= userInfo.byear %>년 <%= userInfo.bmonth%>월 <%= userInfo.bdate%>일</span>
+    </div>
+    <div>관심사: <span><%= userInfo.interests %></span></div>
+    <%#if(userInfo.color!='' && userInfo.number!=''){%> <%if(addInfo){%>
+    <div>
+      <span>좋아하는 색상: </span>
+      <span class="color"><b><%= userInfo.color%></b></span
+      ><br />
+    </div>
+    <div>
+      <span>좋아하는 숫자: </span>
+      <span><%= userInfo.number%></span>
+    </div>
+    <%}%>
+    <script>
+      const color = document.querySelector('.color');
+      color.style.color = '<%= userInfo.color %>';
+      document.addEventListener('DOMContentLoaded', () => {});
+    </script>
+  </body>
+</html>
