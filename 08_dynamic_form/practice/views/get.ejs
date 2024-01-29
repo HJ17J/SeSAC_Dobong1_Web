@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>회원가입</title>
+    <style>
+      fieldset {
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <form name="registForm">
+      <label for="name">이름</label>
+      <input type="text" id="name" name="name" required />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="gender" value="여성" id="female" required />
+        <label for="female">여성</label>
+        <input type="radio" name="gender" value="남성" id="male" required />
+        <label for="male">남성</label>
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="bYear" id="bYear" required>
+          <% for(let i=1900; i<=2009; i++){ %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="bYear">년 </label>
+        <select name="bMonth" id="bMonth" required>
+          <% for(let i=1; i<=12; i++){ %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="bMonth">월 </label>
+        <select name="bDate" id="bDate" required>
+          <% for(let i=1; i<=31; i++){ %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="bDate">일</label>
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="interests" value="여행" id="travel" required />
+        <label for="travel">여행</label>
+        <input type="checkbox" name="interests" value="패션" id="fashion" required />
+        <label for="fashion">패션</label>
+        <input type="checkbox" name="interests" value="음식" id="food" required />
+        <label for="food">음식</label>
+      </fieldset>
+      <button type="button" onclick="register()">회원가입</button>
+      <br /><br />
+      <div class="result"></div>
+    </form>
+    <script>
+      async function register() {
+        const regForm = document.forms['registForm'];
+        const interest = [];
+        for (el of regForm.interests) {
+          if (el.checked === true) interest.push(el.value);
+        }
+        const userInfo = {
+          name: regForm.name.value,
+          gender: regForm.gender.value,
+          birth:
+            regForm.bYear.value + '년 ' + regForm.bMonth.value + '월 ' + regForm.bDate.value + '일',
+          interests: interest,
+        };
+        await axios({
+          method: 'get',
+          url: '/register',
+          params: userInfo,
+        })
+          .then((res) => {
+            console.log(res.data);
+            const div = document.querySelector('.result');
+            div.innerHTML = `<p>이름: ${res.data.name}</p><p>성별: ${res.data.gender}</p><p>생년월일: ${res.data.birth}</p><p>관심사: ${res.data.interests}</p>`;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    </script>
+  </body>
+</html>

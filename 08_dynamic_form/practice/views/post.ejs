@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>로그인</title>
+    <style>
+      fieldset {
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <form name="loginForm">
+      <input type="text" name="id" id="id" placeholder="ID" required />
+      <br />
+      <input type="password" name="pw" id="pw" placeholder="PW" required />
+      <div class="result"></div>
+      <button type="button" onclick="login()">로그인</button>
+    </form>
+    <script>
+      let msg;
+      async function login() {
+        const loginForm = document.forms['loginForm'];
+        const resultDiv = document.querySelector('.result');
+        const loginInfo = {
+          id: loginForm.id.value,
+          pw: loginForm.pw.value,
+        };
+
+        if (!loginForm.id.checkValidity()) {
+          msg = '아이디를 입력해주세요';
+          resultDiv.innerText = msg;
+          resultDiv.style.color = 'red';
+        } else if (!loginForm.pw.checkValidity()) {
+          msg = '비밀번호를 입력해주세요';
+          resultDiv.innerText = msg;
+          resultDiv.style.color = 'red';
+        } else {
+          try {
+            const res = await axios({
+              method: 'post',
+              url: '/login',
+              data: loginInfo,
+            });
+            console.log(res);
+            msg = `${res.data.id}님 반갑습니다.`;
+            resultDiv.innerText = msg;
+            resultDiv.style.color = 'blue';
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

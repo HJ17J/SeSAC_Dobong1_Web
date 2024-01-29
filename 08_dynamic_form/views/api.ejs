@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>외부 API 사용</title>
+    <style>
+      ul {
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+      }
+
+      ul p {
+        width: 200px;
+      }
+      ul img {
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>간단 Open API 사용</h1>
+    <h3>고양이 사진 바꾸기</h3>
+    <button type="button" onclick="changeCatImg()">고양이 사진 변경</button>
+    <br /><br />
+    <img src="" alt="기본 이미지" id="img" />
+
+    <h3>영화 정보 가져오기</h3>
+    <ul></ul>
+
+    <script>
+      const word = 'love';
+
+      axios({
+        method: 'get',
+        url: 'http://www.omdbapi.com/?apikey=cb65e3c2&s=' + word,
+      })
+        .then((res) => {
+          console.log(res.data);
+          console.log(res.data.Search);
+
+          const ul = document.querySelector('ul');
+          for (let movie of res.data.Search) {
+            const div = document.createElement('div');
+            const img = document.createElement('img');
+            const p = document.createElement('p');
+            const a = document.createAttribute('a');
+
+            img.src = movie.Poster;
+            img.alt = movie.imdbID;
+            a.href = 'http://www.imdb.com/' + movie.imdbID;
+            p.innerText = movie.Title;
+
+            div.append(img);
+            div.append(p);
+            ul.append(div);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      function changeCatImg() {
+        fetch('https://api.thecatapi.com/v1/images/search')
+          .then((res) => res.json())
+          .then((result) => {
+            const img = document.querySelector('#img');
+            const url = result[0].url;
+            img.src = url;
+            img.alt = `${result[0].id}-cat`;
+            img.setAttribute('width', 400);
+          });
+      }
+    </script>
+  </body>
+</html>
