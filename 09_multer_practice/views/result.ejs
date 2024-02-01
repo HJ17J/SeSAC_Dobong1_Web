@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my page</title>
+    <link rel="stylesheet" href="/public/result.css" />
+  </head>
+  <body>
+    <div class="userInfo">
+      <h1><span><%= userInfo.name %></span>님 마이페이지</h1>
+      <div class="profile_box">
+        <img src="<%= profileImg.path %>" alt="user profile" />
+      </div>
+      <div>
+        <p>아이디</p>
+        <p><%= userInfo.id %></p>
+      </div>
+      <div>
+        <p>비밀번호</p>
+        <p><%= userInfo.pw %></p>
+      </div>
+      <div>
+        <p>이름</p>
+        <p><%= userInfo.name %></p>
+      </div>
+      <div>
+        <p>나이</p>
+        <p><%= userInfo.age %></p>
+      </div>
+    </div>
+    <script></script>
+  </body>
+</html>

@@ -9,6 +9,27 @@
       fieldset {
         width: 500px;
       }
+      #name {
+        height: 36px;
+        border: 3px dashed lightgrey;
+        border-radius: 5px;
+        background-color: #fdf3f3;
+      }
+      #name:focus {
+        outline: none;
+      }
+      button {
+        width: 100px;
+        height: 32px;
+        border-radius: 5px;
+        background-color: plum;
+        color: white;
+        border: none;
+      }
+      button:hover {
+        background-color: lightgrey;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -21,37 +42,63 @@
     </form>
     <script>
       let msg;
+      const loginForm = document.forms['loginForm'];
+      const resultDiv = document.querySelector('.result');
+
       async function login() {
-        const loginForm = document.forms['loginForm'];
-        const resultDiv = document.querySelector('.result');
+        // 유효성 체크
+        if (!form.userId.checkValidity() || !form.userPw.checkValidity()) {
+          message.textContent = '아이디와 비밀번호는 필수 값입니다.';
+          return;
+        }
         const loginInfo = {
           id: loginForm.id.value,
           pw: loginForm.pw.value,
         };
+        axios({
+          method: 'post',
+          url: '/login',
+          data: loginInfo,
+        })
+          .then((res) => {
+            console.log(res.data);
+            if (response.data.isSuccess) {
+              // 로그인 성공
+              message.textContent = `${response.data.userInfo.id}님 환영합니다.`;
+              message.classList.add('success');
+              message.classList.remove('error');
+            } else {
+              // 로그인 실패
+              message.textContent = `로그인 실패, 아이디 또는 패스워드 오류😢`;
+              message.classList.remove('success');
+              message.classList.add('error');
+            }
+          })
+          .catch((err) => console.log(err));
 
-        if (!loginForm.id.checkValidity()) {
-          msg = '아이디를 입력해주세요';
-          resultDiv.innerText = msg;
-          resultDiv.style.color = 'red';
-        } else if (!loginForm.pw.checkValidity()) {
-          msg = '비밀번호를 입력해주세요';
-          resultDiv.innerText = msg;
-          resultDiv.style.color = 'red';
-        } else {
-          try {
-            const res = await axios({
-              method: 'post',
-              url: '/login',
-              data: loginInfo,
-            });
-            console.log(res);
-            msg = `${res.data.id}님 반갑습니다.`;
-            resultDiv.innerText = msg;
-            resultDiv.style.color = 'blue';
-          } catch (err) {
-            console.log(err);
-          }
-        }
+        // if (!loginForm.id.checkValidity()) {
+        //   msg = '아이디를 입력해주세요';
+        //   resultDiv.innerText = msg;
+        //   resultDiv.style.color = 'red';
+        // } else if (!loginForm.pw.checkValidity()) {
+        //   msg = '비밀번호를 입력해주세요';
+        //   resultDiv.innerText = msg;
+        //   resultDiv.style.color = 'red';
+        // } else {
+        //   try {
+        //     const res = await axios({
+        //       method: 'post',
+        //       url: '/login',
+        //       data: loginInfo,
+        //     });
+        //     console.log(res);
+        //     msg = `${res.data.id}님 반갑습니다.`;
+        //     resultDiv.innerText = msg;
+        //     resultDiv.style.color = 'blue';
+        //   } catch (err) {
+        //     console.log(err);
+        //   }
+        // }
       }
     </script>
   </body>

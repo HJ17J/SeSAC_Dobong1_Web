@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+.userInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+}
+.userInfo div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.profile_box {
+  margin: 20px 0px;
+}
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 7px double #b9d6e2;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px #cfd8da;
+}
+h1 > span {
+  color: skyblue;
+  font-weight: 700;
+}
+p:nth-child(odd) {
+  font-weight: 700;
+  width: 50%;
+  text-align: right;
+  padding: 0 30px 0 0;
+}
+p:nth-child(even) {
+  width: 50%;
+  text-align: left;
+  padding: 0 30px 0 0;
+}

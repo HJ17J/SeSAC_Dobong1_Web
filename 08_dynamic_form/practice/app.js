@@ -26,6 +26,16 @@ app.get('/post', (req, res) => {
 
 app.post('/login', (req, res) => {
   console.log(req.body);
+  // 서버의 계정 정보와 클라이언트의 계정 정보가 일치하는지 확인
+  const { id: clientId, password: clientPw } = req.body;
+  if (clientId === id && password === pw) {
+    res.send({
+      userInfo: req.body,
+      isSuccess: true,
+    });
+  } else {
+    res.send({ isSuccess: false });
+  }
   res.send(req.body);
 });
 

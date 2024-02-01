@@ -6,8 +6,43 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>회원가입</title>
     <style>
-      fieldset {
+      * {
+        box-sizing: border-box;
+      }
+      form {
         width: 500px;
+        margin: 20px 10px;
+      }
+      form * {
+        margin: 5px;
+      }
+      fieldset {
+        width: 100%;
+        border: 3px dashed lightgrey;
+        border-radius: 5px;
+        background-color: #fdf3f3;
+      }
+      #name {
+        width: 88%;
+        height: 36px;
+        border: 3px dashed lightgrey;
+        border-radius: 5px;
+        background-color: #fdf3f3;
+      }
+      #name:focus {
+        outline: none;
+      }
+      button {
+        width: 100px;
+        height: 32px;
+        border-radius: 5px;
+        background-color: plum;
+        color: white;
+        border: none;
+      }
+      button:hover {
+        background-color: lightgrey;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -60,6 +95,9 @@
       async function register() {
         const regForm = document.forms['registForm'];
         const interest = [];
+        // regForm.interests.forEach((checkbox) => {
+        //   if (checkbox.checked === true) interest.push(checkbox.value);
+        // });
         for (el of regForm.interests) {
           if (el.checked === true) interest.push(el.value);
         }
@@ -76,8 +114,10 @@
           params: userInfo,
         })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
+            const { name, gender, birth, interests } = res.data;
             const div = document.querySelector('.result');
+            // div.innerHTML = `<p>이름: ${name}</p><p>성별: ${gender}</p><p>생년월일: ${birth}</p><p>관심사: ${interests}</p>`;
             div.innerHTML = `<p>이름: ${res.data.name}</p><p>성별: ${res.data.gender}</p><p>생년월일: ${res.data.birth}</p><p>관심사: ${res.data.interests}</p>`;
           })
           .catch((err) => {
