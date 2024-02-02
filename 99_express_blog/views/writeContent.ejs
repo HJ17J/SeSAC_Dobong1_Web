@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>write</title>
+    <style>
+      h1{
+        text-align: center;
+      }
+      form textarea{
+        width: 400px;
+        height: 500px;
+      }
+      form{
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 1rem 0;
+        margin: 2rem;
+      }
+      button{
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./include/head')%>
+    <h1>글 작성하기</h1>
+    <form action="/blog/posts" method="post" enctype="multipart/form-data">
+      <input type="text" name="title" placeholder="🖋 글 제목을 작성해주세요.">
+      <br><br>
+      <textarea name="content" placeholder="🖋 글 내용을 작성해주세요."></textarea>
+      <br><br>
+      <input type="file" name="img"></input>
+      <br><br>
+      <button type="submit">등록</button>
+    </form>
+  </body>
+</html>

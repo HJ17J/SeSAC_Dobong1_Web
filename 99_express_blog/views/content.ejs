@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>content</title>
+    <%- include('./include/head.ejs') %>
+    <style>
+      h1,
+      div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./include/header.ejs') %>
+    <div class="container">
+      <h1 id="title"><%= title %></h1>
+      <div>
+        <p><%= content %></p>
+        <% if(img === null){} else{ %>
+        <img src="/<%= img %>" alt="<%= contentID %>번 글 이미지" width="480" />
+        <% } %>
+
+        <!-- 
+            개행문자
+            /r  CR
+            /n  LF
+            /r/n  CRLF
+         -->
+      </div>
+    </div>
+  </body>
+</html>

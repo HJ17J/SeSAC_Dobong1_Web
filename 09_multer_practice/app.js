@@ -22,7 +22,8 @@ const storage = multer.diskStorage({
     cb(null, path.basename(file.originalname, ext) + '-' + Date.now() + ext);
   },
 });
-const uploadFile = multer({ storage: storage, limits: { fileSize: 5 * 1024 * 1024 } });
+const limits = { fileSize: 5 * 1024 * 1024 };
+const uploadFile = multer({ storage: storage, limits: limits });
 
 app.get('/', (req, res) => {
   res.render('index');
