@@ -160,3 +160,52 @@ SELECT DISTINCT AGE FROM USER;
 DELETE FROM USER WHERE NAME LIKE '이%';
 SELECT * FROM USER;
 
+
+SHOW DATABASES;
+USE SESAC;
+SHOW TABLES;
+
+-- IF EXISTS 존재할 경우 삭제
+DROP TABLE IF EXISTS USER;
+
+CREATE TABLE USER(
+    user_Id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(10) NOT NULL,
+    specialize ENUM('축구', '야구', '클라이밍', '배드민턴') NOT NULL,
+    gender ENUM('남', '여') NOT NULL,
+    career_year INT NOT NULL
+);
+DESC USER;
+
+INSERT INTO USER VALUES (NULL, '김판곤', '축구', '남', 40);
+INSERT INTO USER VALUES(NULL, '손흥민', '축구', '남',15);
+INSERT INTO USER VALUES(NULL, '김자인', '클라이밍', '여',10);
+INSERT INTO USER VALUES(NULL, '김동우', '축구', '남',1);
+INSERT INTO USER VALUES(NULL, '전유진', '배드민턴', '여',2);
+INSERT INTO USER VALUES(NULL, '이대호', '야구', '남',24);
+INSERT INTO USER VALUES(NULL, '안세영', '배드민턴', '여',11);
+INSERT INTO USER VALUES(NULL, '배서연', '클라이밍', '여',3);
+INSERT INTO USER VALUES(NULL, '황희찬', '축구', '남',9);
+INSERT INTO USER VALUES(NULL, '지소연', '축구', '여',17);
+INSERT INTO USER VALUES(NULL, '이정후', '야구', '남',11);
+INSERT INTO USER VALUES(NULL, '김광현', '야구', '남',21);
+SELECT * FROM USER;
+
+-- 집계함수
+SELECT COUNT(specialize) FROM USER WHERE specialize = '축구';
+-- where 조건에 만족하는 튜플의 개수를 출력
+SELECT SUM(career_year) FROM USER WHERE specialize = '축구';
+SELECT AVG(career_year) FROM USER WHERE specialize = '축구';
+SELECT MIN(career_year) FROM USER WHERE specialize = '축구';
+SELECT MAX(career_year) FROM USER WHERE specialize = '축구';
+
+-- GROUP BY (같은 그룹으로 묶어서 확인)
+SELECT specialize FROM USER GROUP BY specialize;
+SELECT specialize, COUNT(*) FROM USER GROUP BY specialize;
+
+-- HAVING
+SELECT specialize, COUNT(*)
+    FROM USER
+    WHERE gender = '여'
+    GROUP BY specialize
+    HAVING COUNT(specialize) >= 2;
