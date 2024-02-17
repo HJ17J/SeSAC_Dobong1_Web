@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- custom js -->
+    <script defer src="/static/visitor.js"></script>
+    <title>방명록</title>
+    <style>
+      fieldset {
+        width: 500px;
+      }
+      table {
+        width: 500px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>방명록 페이지</h1>
+    <form name="visitor-form">
+      <fieldset>
+        <legend>방명록 등록</legend>
+        <input type="text" name="name" placeholder="사용자 이름" /><br />
+        <input type="text" name="comment" placeholder="간단한 방명록 작성" /><br />
+        <div id="btn-group">
+          <button type="button" onclick="createVisitor()">등록</button>
+        </div>
+      </fieldset>
+    </form>
+    <br /><br />
+    <table border="1" cellspacing="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>작성자</th>
+          <th>방명록</th>
+          <th>수정</th>
+          <th>삭제</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<visitors.length; i++){%>
+        <tr id="tr_<%= visitors[i].id %>">
+          <td><%= visitors[i].id %></td>
+          <td><%= visitors[i].name %></td>
+          <td><%= visitors[i].comment %></td>
+          <td><button type="button" onclick="editVisitor('<%= visitors[i].id %>')">수정</button></td>
+          <td><button type="button" onclick="deleteVisitor(this,'<%= visitors[i].id %>')">삭제</button></td>
+        </tr>
+        <% }%>
+      </tbody>
+    </table>
+  </body>
+</html>
