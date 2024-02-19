@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/header', { title: '회원가입' })%>
+  <body>
+    <h1>회원가입</h1>
+    <form name="form_register">
+      <label for="userid">ID</label>
+      <input id="userid" type="text" name="userid" required />
+      <button type="button" onclick="checkIdDuplicated()">중복확인</button><br />
+      <div id="userid_check"></div>
+      <label for="password">Password</label>
+      <input id="password" type="password" name="pw" required /><br />
+      <label for="nickname">Name </label>
+      <input id="nickname" type="text" name="name" required /><br />
+      <button type="button" onclick="register()">Register</button>
+    </form>
+    <a href="/user/signin">Login</a>
+    <script>
+      let idChecked = false;
+      let isIdDupl = true;
+      function checkIdDuplicated() {
+        idChecked = true;
+        const form = document.forms['form_register'];
+        if (form.userid.value === '') {
+          form.reportValidity();
+          return;
+        }
+        axios({
+          method: 'post',
+          url: '/user/idCheck',
+          data: {
+            userid: form.userid.value,
+          },
+        }).then((res) => {
+          const idCheck = document.querySelector('#userid_check');
+          isIdDupl = res.data.isIdDupl;
+          console.log(isIdDupl);
+          if (isIdDupl) {
+            idCheck.textContent = '해당 ID가 이미 있습니다.';
+            idCheck.style.color = 'red';
+          } else {
+            idCheck.textContent = '사용 가능한 ID입니다.';
+            idCheck.style.color = 'blue';
+          }
+        });
+      }
+      function register() {
+        const form = document.forms['form_register'];
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        if (idChecked === false) {
+          alert('ID 중복 확인을 해주세요.');
+          return;
+        }
+        if (isIdDupl) {
+          return;
+        }
+        axios({
+          method: 'post',
+          url: '/user/signup',
+          data: {
+            userid: form.userid.value,
+            pw: form.pw.value,
+            name: form.name.value,
+          },
+        }).then(() => {
+          document.location.href = '/user/signin';
+        });
+      }
+    </script>
+  </body>
+</html>

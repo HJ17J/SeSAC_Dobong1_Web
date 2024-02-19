@@ -1,6 +1,5 @@
 // const Visitor = require('../model/Visitor');
 const models = require('../models');
-const Visitor = require('../models/Visitor');
 
 exports.main = (req, res) => {
   res.render('index');

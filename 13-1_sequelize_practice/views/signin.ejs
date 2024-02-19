@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/header', { title: '로그인' })%>
+  <body>
+    <h1>로그인</h1>
+    <form name="form_info" action="/user/profile" method="POST">
+      <input type="hidden" name="userid" />
+    </form>
+
+    <form name="form_login">
+      <div id="login_failed"></div>
+      <label for="userid">ID</label>
+      <input id="userid" type="text" name="userid" required /><br />
+      <label for="password">Password</label>
+      <input id="password" type="password" name="pw" required /><br />
+      <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <a href="/user/signup">Register</a>
+    <script>
+      function login() {
+        const form = document.forms['form_login'];
+        const formInfo = document.forms['form_info'];
+        const loginFail = document.querySelector('#login_failed');
+        axios({
+          method: 'post',
+          url: '/user/signin',
+          data: {
+            userid: form.userid.value,
+            pw: form.pw.value,
+          },
+        }).then((res) => {
+          const userInfo = res.data.userInfo;
+          if (userInfo === null) {
+            loginFail.innerHTML =
+              '<p>아이디나 비밀번호가 맞지 않습니다. <br/>다시 확인해주세요.</p>';
+            loginFail.style.color = 'red';
+            form.pw.value = '';
+          } else {
+            loginFail.innerHTML = '';
+            formInfo.userid.value = userInfo.userid;
+            console.log(formInfo.userid.value);
+            formInfo.submit();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
