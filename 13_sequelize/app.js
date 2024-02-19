@@ -12,7 +12,9 @@ app.use(express.json());
 // 라우터 분리
 // const indexRouter = require('./routes/index');
 const indexRouter = require('./routes'); // 파일이 index.js일 경우는 index 생략 가능
+const userRouter = require('./routes/user');
 app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 app.get('*', (req, res) => {
   res.render('404');

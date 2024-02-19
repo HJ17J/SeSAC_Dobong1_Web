@@ -20,7 +20,6 @@ exports.idCheck = (req, res) => {
   models.User.findOne({
     where: { userid: req.body.userid },
   }).then((result) => {
-    console.log(result);
     if (result === null) {
       res.send({ isIdDupl: false });
     } else {
@@ -30,7 +29,6 @@ exports.idCheck = (req, res) => {
 };
 
 exports.postSignUp = (req, res) => {
-  console.log(req.body);
   models.User.create({
     userid: req.body.userid,
     pw: req.body.pw,
@@ -69,6 +67,7 @@ exports.postEdit = (req, res) => {
       where: { userid: req.body.userid },
     }
   ).then(() => {
+    // result -- [1]: 수정 성공, [0]: 수정 실패
     res.end();
   });
 };
