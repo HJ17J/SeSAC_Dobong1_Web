@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%-include('include/header', {title:'메인페이지'})%>
+  <body>
+    <h1>메인</h1>
+    <!-- 로그인 한 상태에서는 닉네임+환영문구 띄우고, 로그인/회원가입 링크 대신 프로필 링크 삽입 -->
+    <% if(!session.isLogin){ %>
+    <a href="/user/login">로그인</a><br />
+    <a href="/user/register">회원가입</a>
+    <% } else { %>
+    <h3>
+      <%=session.name%>님 환영합니다. <button type="button" onclick="logout()">로그아웃</button>
+    </h3>
+    <a href="/user/profile">마이페이지</a>
+    <% } %>
+    <script>
+      async function logout() {
+        const isLogout = confirm('로그아웃 하시겠습니까?');
+        if (isLogout) {
+          await axios({
+            method: 'post',
+            url: '/user/logout',
+            data: { id: '<%= session.userid %>' },
+          });
+          document.location.href = '/user';
+        }
+      }
+    </script>
+  </body>
+</html>

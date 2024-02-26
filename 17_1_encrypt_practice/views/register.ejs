@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/header', {title: '회원가입'}) %>
+  <body>
+    <h1>회원가입</h1>
+    <form name="register-form">
+      <input type="text" id="id" onchange="idChanged()" placeholder="아이디" required />
+      <button type="button" onclick="idCheck()">중복확인</button><br />
+      <div id="idCheck"></div>
+      <input type="password" id="pw" placeholder="비밀번호" required /><br />
+      <input type="text" id="name" placeholder="이름" required /><br />
+      <button type="button" onclick="register()">회원가입</button>
+    </form>
+    <script>
+      let idChecked = false;
+      let idDupl = true;
+
+      // 아이디 중복검사
+      async function idCheck() {
+        idChecked = true;
+        const form = document.forms['register-form'];
+        const div = document.querySelector('#idCheck');
+        const response = await axios({
+          method: 'post',
+          url: '/user/idCheck',
+          data: { id: form.id.value },
+        });
+
+        const isDuplicated = response.data.isDuplicated;
+        if (isDuplicated) {
+          idDupl = true;
+          div.innerHTML = '<p>해당 아이디가 이미 존재합니다.</p>';
+          div.style.color = 'red';
+        } else {
+          idDupl = false;
+          div.innerHTML = '<p>사용 가능한 아이디입니다.</p>';
+          div.style.color = 'blue';
+        }
+      }
+
+      // 아이디 값 변경 시
+      function idChanged() {
+        const div = document.querySelector('#idCheck');
+        idChecked = false;
+        idDupl = true;
+        div.innerHTML = '';
+      }
+
+      // 회원가입
+      async function register() {
+        const form = document.forms['register-form'];
+        // input 유효성 검사
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // 아이디 중복체크 여부 확인
+        if (!idChecked) {
+          alert('아이디 중복 확인을 해주세요.');
+          return;
+        } else if (idDupl) {
+          return;
+        }
+
+        // 회원가입 (값 전부 채워짐/아이디 중복체크 함/아이디 중복이 아님)
+        const isRegister = await axios({
+          method: 'post',
+          url: '/user/register',
+          data: {
+            id: form.id.value,
+            pw: form.pw.value,
+            name: form.name.value,
+          },
+        });
+
+        // 회원가입 성공 시 로그인 창으로 이동
+        if (isRegister) {
+          alert('회원가입에 성공했습니다.');
+          document.location.href = '/user/login';
+        } else {
+          alert('회원가입에 실패했습니다.');
+        }
+      }
+    </script>
+  </body>
+</html>

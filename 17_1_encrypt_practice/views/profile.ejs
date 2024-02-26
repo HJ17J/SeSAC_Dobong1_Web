@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/header', {title:'회원정보'}) %>
+  <body>
+    <!-- 회원정보 조회, 회원정보 수정, 회원정보 탈퇴 -->
+    <h1>회원 정보</h1>
+    <% if(userInfo){ %>
+    <form name="profile-form">
+      <label for="id">아이디</label>
+      <input type="text" id="id" name="profile-info" value="<%=userInfo.id%>" readonly /><br />
+      <label for="pw">비밀번호</label>
+      <input type="password" id="pw" name="profile-info" value="<%=userInfo.pw%>" readonly /><br />
+      <label for="name">이름</label>
+      <input type="text" id="name" name="profile-info" value="<%=userInfo.name%>" readonly /><br />
+    </form>
+    <div id="btn-group">
+      <button type="button" onclick="editInfo()">정보 수정</button>
+      <button type="button" onclick="deregister()">회원 탈퇴</button>
+    </div>
+    <br />
+    <a href="/user">홈</a>
+    <% }else{ %>
+    <p>회원 정보를 찾을 수 없습니다.</p>
+    <a href="/user">홈</a>
+    <% } %>
+    <script>
+      function editInfo() {
+        const form = document.forms['profile-form'];
+        const btnGroup = document.querySelector('#btn-group');
+        btnGroup.innerHTML =
+          '<button type="button" onclick="editDo()">수정</button> <button type="button" onclick="cancle()">취소</button>';
+        form.pw.readOnly = false;
+        form.name.readOnly = false;
+      }
+
+      async function editDo() {
+        const form = document.forms['profile-form'];
+        const editInfo = confirm('정보를 수정하시겠습니까?');
+        if (editInfo) {
+          const result = await axios({
+            method: 'post',
+            url: '/user/editUserInfo',
+            data: { id: form.id.value, pw: form.pw.value, name: form.name.value },
+          });
+          if (result.data.isEdit) {
+            document.location.href = '/user/profile';
+          } else {
+            alert('수정 실패하였습니다.');
+          }
+        }
+      }
+
+      function cancle() {
+        const form = document.forms['profile-form'];
+        form.pw.value = '<%=userInfo.pw%>';
+        form.name.value = '<%=userInfo.name%>';
+        Array.from(form.elements).forEach((input) => {
+          input.readOnly = true;
+        });
+        const btnGroup = document.querySelector('#btn-group');
+        btnGroup.innerHTML =
+          '<button type="button" onclick="editInfo()">정보 수정</button> <button type="button" onclick="deregister()">회원 탈퇴</button>';
+      }
+
+      async function deregister() {
+        const form = document.forms['profile-form'];
+        const isDelete = confirm('회원 탈퇴를 하시겠습니까?');
+        if (isDelete) {
+          // 회원 삭제
+          const deleteUser = await axios({
+            method: 'post',
+            url: '/user/deregister',
+            data: { id: form.id.value },
+          });
+          if (deleteUser) {
+            alert('회원 탈퇴에 성공하였습니다.');
+            // 세션 삭제
+            const delSession = await axios({
+              method: 'post',
+              url: '/user/logout',
+              data: { id: form.id.value },
+            });
+            document.location.href = '/user';
+          } else {
+            alert('회원 탈퇴에 실패하였습니다.');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

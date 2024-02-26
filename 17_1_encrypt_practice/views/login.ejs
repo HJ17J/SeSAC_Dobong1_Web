@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/header', {title: '로그인'}) %>
+  <body>
+    <h1>로그인</h1>
+    <div id="loginbox"></div>
+    <form name="login-form">
+      <input type="text" id="id" placeholder="아이디" /><br />
+      <input type="password" id="pw" placeholder="비밀번호" /><br />
+      <button type="button" onclick="login()">로그인</button>
+    </form>
+    <script>
+      async function login() {
+        const form = document.forms['login-form'];
+        const loginbox = document.querySelector('#loginbox');
+        if (!form.checkValidity()) {
+          form.reportValidity();
+        }
+        const login = await axios({
+          method: 'post',
+          url: '/user/login',
+          data: { id: form.id.value, pw: form.pw.value },
+        });
+        console.log(login);
+        let isLogin = login.data.isLogin;
+        if (isLogin) {
+          document.location.href = '/user';
+        } else {
+          loginbox.innerHTML =
+            '<p>로그인에 실패하였습니다.</br>아이디 혹은 비밀번호를 다시 확인해주세요.</p>';
+          loginbox.style.color = 'red';
+        }
+      }
+    </script>
+  </body>
+</html>
