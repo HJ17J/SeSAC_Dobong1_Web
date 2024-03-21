@@ -1,6 +1,4 @@
-// import logo from './logo.svg';
 import { ClassProps, ClassProps2 } from './components/ClassProps';
-// import './App.css';
 import { FunctionProps, FunctionProps2 } from './components/FunctionProps';
 import { Food } from './components/Food';
 import { Book } from './components/Book';
@@ -9,9 +7,6 @@ import { ClassState } from './components/ClassState';
 import { FunctionState } from './components/FunctionState';
 
 function App() {
-  function func() {
-    console.log('콘솔 메세지 출력!');
-  }
   return (
     <div className='App'>
       {/* <h1>hello, props</h1>

@@ -16,6 +16,11 @@ export function HandlerEx() {
 export function HandlerEx2() {
   const [color, setColor] = useState('black');
   const [colorName, setColorName] = useState('검정색');
+  // let [textColor, changeColor] = useState({color:'black', text:'검정색'});
+  // const setColor = (color, obj) => {
+  //   changeColor({ color: color, text: obj.innerText });
+  // };
+
   function changeColor(color, colorName) {
     setColor(color);
     setColorName(colorName);
@@ -30,18 +35,14 @@ export function HandlerEx2() {
 }
 
 export function HandlerEx3() {
-  // const [btnName, setBtnName] = useState('사라져라');
   const [display, setDisplay] = useState('block');
   function toggleTxt(e) {
     if (e.target.innerText === '보여라') {
       e.target.innerText = '사라져라';
       setDisplay('block');
-      console.log(display);
-      // setBtnName('사라져라');
     } else {
       e.target.innerText = '보여라';
       setDisplay('none');
-      // setBtnName('보여라');
     }
   }
   return (

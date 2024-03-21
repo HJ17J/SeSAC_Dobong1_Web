@@ -1,4 +1,4 @@
-import imgSrc from './XL.jpg';
+import imgSrc from '../XL.jpg';
 
 export function Book(props) {
   const divStyle = {

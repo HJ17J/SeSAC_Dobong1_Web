@@ -1,0 +1,28 @@
+table {
+  border: 1px solid black;
+  width: 600px;
+}
+.inputDiv,
+.tableDiv,
+.searchDiv,
+.searchResultDiv {
+  padding: 10px;
+}
+.inputDiv *,
+.searchDiv * {
+  margin: 0px 3px;
+}
+thead {
+  height: 32px;
+  background-color: rgb(220, 238, 191);
+}
+th,
+td {
+  text-align: center;
+}
+thead th:nth-child(1) {
+  width: 20%;
+}
+thead th:nth-child(2) {
+  width: 50%;
+}
