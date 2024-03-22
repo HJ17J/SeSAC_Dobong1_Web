@@ -1,0 +1,30 @@
+.inputForm {
+  width: 600px;
+  border: 2px solid #bbbbbb;
+  padding: 20px;
+}
+
+.inputForm * {
+  margin: 0px 5px;
+}
+
+.searchForm * {
+  margin: 10px 5px;
+}
+
+.listDiv table,
+.searchDiv table {
+  width: 600px;
+  border: 1px solid #bbbbbb;
+  box-shadow: 0px 0px 5px rgba(210, 210, 210, 0.949);
+  text-align: center;
+}
+.listDiv table thead,
+.searchDiv table thead {
+  background-color: rgb(237, 255, 212);
+}
+
+.listDiv *,
+.searchDiv * {
+  padding: 3px;
+}

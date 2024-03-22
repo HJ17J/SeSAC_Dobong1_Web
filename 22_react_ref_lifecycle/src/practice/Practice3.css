@@ -1,0 +1,10 @@
+.questionDiv {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+}
+.questionDiv * {
+  margin: 3px auto;
+}
