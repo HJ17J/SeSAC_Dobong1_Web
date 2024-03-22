@@ -1,0 +1,30 @@
+.container {
+  border: 1px solid #bbbbbb;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.box2 {
+  background-color: lavender;
+}
+
+.box2 div {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  background-color: lightpink;
+}
+
+.first {
+  color: orange;
+  font-size: 1.5rem;
+}
+
+.second {
+  padding: 10px;
+  background-color: black;
+  border: 1px solid orange;
+}

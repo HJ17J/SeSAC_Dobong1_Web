@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import './Practice3.css';
+import './styles/Practice3.css';
 
 export default function Practice3() {
   const operator = ['+', '-', 'x'];

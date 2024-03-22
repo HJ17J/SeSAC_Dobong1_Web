@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+}
+
+.postListDiv {
+  width: 100%;
+}
+
+header {
+  height: 100px;
+  line-height: 100px;
+  background-color: #8ab4db;
+  color: aliceblue;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.postListDiv .head {
+  height: 100px;
+  line-height: 100px;
+  background-color: #8ab4db;
+  color: aliceblue;
+  text-align: center;
+}
+
+.postListDiv .loading {
+  text-align: center;
+}
+
+.postListDiv .postDiv {
+  width: 800px;
+  margin: 30px auto;
+  padding: 30px 50px;
+  background-color: #ecf6ff;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #cecece;
+}
+
+.postDiv .title {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px 0px;
+}
+
+.postDiv .title span:first-child {
+  color: #72ade4;
+}
+.postDiv .title span:last-child {
+  color: #838383;
+}
+
+.postDiv .body {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 5px 0px;
+}

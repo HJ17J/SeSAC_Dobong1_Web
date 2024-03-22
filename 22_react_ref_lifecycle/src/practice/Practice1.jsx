@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import './Practice1.css';
+import './styles/Practice1.css';
 
 export default function Practice1() {
   const [writer, setWriter] = useState('');
