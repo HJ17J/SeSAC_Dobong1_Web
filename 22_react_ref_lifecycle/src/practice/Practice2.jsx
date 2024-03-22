@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 export default function Practice2() {
   const divRef = useRef();
   const inputRef = useRef();
-  const [color, setColor] = useState('white');
+  // const [color, setColor] = useState('white');
   const divStyle = {
     width: '200px',
     padding: '10px',
@@ -14,7 +14,7 @@ export default function Practice2() {
   };
 
   const changeColor = () => {
-    divRef.current.style.backgroundColor = color;
+    divRef.current.style.backgroundColor = inputRef.current.value;
     inputRef.current.focus();
     inputRef.current.value = '';
   };
@@ -24,7 +24,7 @@ export default function Practice2() {
         type='text'
         ref={inputRef}
         placeholder='색깔을 입력하세요'
-        onChange={(e) => setColor(e.target.value)}
+        // onChange={(e) => setColor(e.target.value)}
         style={{ marginBottom: '5px' }}
       />
       <br />

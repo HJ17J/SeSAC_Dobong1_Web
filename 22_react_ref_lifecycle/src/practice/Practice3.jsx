@@ -11,7 +11,7 @@ export default function Practice3() {
   const [op, setOp] = useState(ranOp);
   const [num1, setNum1] = useState(ranNum1);
   const [num2, setNum2] = useState(ranNum2);
-  const [answer, setAnswer] = useState();
+  // const [answer, setAnswer] = useState();
 
   const inputRef = useRef();
 
@@ -28,18 +28,17 @@ export default function Practice3() {
         rightAnswer = num1 * num2;
         break;
     }
-    inputRef.current.value = '';
-    inputRef.current.focus();
 
-    if (answer == rightAnswer) {
+    if (inputRef.current.value == rightAnswer) {
       alert('정답입니다!😄');
       setNum1(ranNum1);
       setNum2(ranNum2);
       setOp(ranOp);
-      return;
     } else {
       alert(`틀렸습니다😔\n정답은 ${rightAnswer}입니다!`);
     }
+    inputRef.current.value = '';
+    inputRef.current.focus();
   };
 
   return (
@@ -50,7 +49,7 @@ export default function Practice3() {
       <input
         type='text'
         placeholder='답을 입력하세요'
-        onChange={(e) => setAnswer(e.target.value)}
+        // onChange={(e) => setAnswer(e.target.value)}
         ref={inputRef}
       />
       <br />
