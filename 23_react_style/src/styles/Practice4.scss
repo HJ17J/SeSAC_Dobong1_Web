@@ -1,0 +1,42 @@
+$colors: (pink, yellow, green);
+
+@mixin animation-circle($movingDist) {
+  @keyframes circling {
+    0%,
+    100% {
+      transform: translate(#{$movingDist});
+    }
+    25% {
+      transform: translate(#{$movingDist}, #{$movingDist});
+    }
+    50% {
+      transform: translate(0px, #{$movingDist});
+    }
+    75% {
+      transform: translate(0px, 0px);
+    }
+  }
+}
+
+@mixin circle($circleColor) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: $circleColor;
+}
+
+.circle-container {
+  position: relative;
+  margin-top: 400px;
+  .circle {
+    @each $el in $colors {
+      $idx: index($colors, $el);
+      &:nth-of-type(#{$idx}) {
+        @include circle($el);
+        @debug 'index: #{10px * $idx}';
+        @include animation-circle(#{10px * $idx});
+        animation: circling 4s infinite;
+      }
+    }
+  }
+}

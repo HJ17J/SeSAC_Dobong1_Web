@@ -1,0 +1,106 @@
+/* 
+    1. 기본 SCSS 문법
+    - nesting
+    - 자기자신 선택자 (&)
+    - 변수 사용
+ */
+@import 'utils';
+
+$color-blue: blue;
+$boxShadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+
+.div1 {
+  width: 100px;
+  height: 100px;
+  background-color: $color-red;
+  .div2 {
+    width: 50%;
+    height: 50%;
+    background-color: $color-orange;
+    box-shadow: inset $boxShadow;
+    .div3 {
+      width: 50%;
+      height: 50%;
+      background-color: yellow;
+      box-shadow: $boxShadow;
+    }
+  }
+  .btn {
+    display: inline-block;
+    transition: $animation-duration;
+    width: 33%;
+    font-size: 10px;
+    height: 40px;
+    padding: 0;
+    &.orangered {
+      background-color: orangered;
+    }
+    &--opacity {
+      background-color: $color_blue;
+      opacity: 0.5;
+      color: white;
+      &:hover {
+        opacity: 0.2;
+      }
+    }
+    &--blue {
+      background-color: $color-blue;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  background-color: gainsboro;
+  margin-bottom: 120px;
+  .box1 {
+    @include box;
+    // &:nth-child(1) { width: 100px; }
+    // &:nth-child(2) { width: 120px; }
+    // &:nth-child(3) { width: 140px; }
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        width: 80px + 20px * $i;
+      }
+    }
+  }
+  .circle {
+    $circleBgColors: ($color-orange, $color-yellow, $color-green);
+    // &:nth-of-type(1) { @include circle($color-orange, 0.8); }
+    // &:nth-of-type(2) { }
+    // &:nth-of-type(3) { }
+    @each $el in $circleBgColors {
+      // scss 기본 메서드, index(list, value) return: 리스트의 value에 대한 인덱스
+      $index: index($circleBgColors, $el);
+      &:nth-of-type(#{$index}) {
+        @include circle($el, 0.8);
+      }
+    }
+  }
+  .box2 {
+    @include box2();
+    &:nth-of-type(4) {
+      @include box2($color-yellow, 20px, navy);
+    }
+    &:nth-of-type(5) {
+      @include box2(orangered, 30px, black);
+    }
+  }
+}
+
+.sass-img {
+  max-width: 200px;
+}
+
+// 이미지 접근하기
+.img-test {
+  width: 100px;
+  height: 100px;
+  border: 1px solid purple;
+  &.src-img {
+    background-image: url('../assets/winniethepooh.gif');
+  }
+  &.public-img {
+    // background-image: url('/assets/ApproachingTheMoon_690313.jpg');
+  }
+}
