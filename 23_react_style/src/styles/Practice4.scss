@@ -1,7 +1,7 @@
 $colors: (pink, yellow, green);
 
-@mixin animation-circle($movingDist) {
-  @keyframes circling {
+@mixin animation-circle($name, $movingDist) {
+  @keyframes #{$name} {
     0%,
     100% {
       transform: translate(#{$movingDist});
@@ -27,15 +27,14 @@ $colors: (pink, yellow, green);
 
 .circle-container {
   position: relative;
-  margin-top: 400px;
+  margin: 400px 0;
   .circle {
     @each $el in $colors {
       $idx: index($colors, $el);
       &:nth-of-type(#{$idx}) {
         @include circle($el);
-        @debug 'index: #{10px * $idx}';
-        @include animation-circle(#{10px * $idx});
-        animation: circling 4s infinite;
+        @include animation-circle($el, #{100 * $idx}px);
+        animation: $el 4s infinite;
       }
     }
   }
