@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+    <title>채팅방</title>
+  </head>
+  <body>
+    <!-- ~~가 입장했습니다 -->
+    <div id="users"></div>
+    <!-- 채팅방 내용 -->
+    <div id="space"></div>
+
+    <form id="chat">
+      <input type="text" placeholder="내용을 입력해주세요" id="message" /><br />
+      <button>보내기</button>
+    </form>
+
+    <script>
+      const socket = io();
+      const users = document.getElementById('users');
+      const space = document.getElementById('space');
+      const chatForm = document.getElementById('chat');
+      const chattingRoom = prompt('채팅방을 입력해주세요');
+
+      const h2 = document.createElement('h2');
+      h2.innerText = `채팅방 ${chattingRoom}`;
+      document.body.prepend(h2);
+
+      //   1. 클라이언트 > 서버 - 방 이름 전달
+      socket.emit('join', chattingRoom);
+
+      // 4. 입장 메시지 띄워주기
+      socket.on('userjoin', (msg) => {
+        console.log(msg);
+        const greet = document.createElement('p');
+        greet.innerText = msg;
+        users.append(greet);
+        setTimeout(() => {
+          greet.remove();
+        }, 2000);
+      });
+
+      // 5. 서버 측으로 메세지 전송
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = chatForm.querySelector('#message');
+        const data = message.value;
+        socket.emit('message', data);
+        message.value = '';
+      });
+
+      // 7. 서버에서 보낸 메세지 띄워주기
+      socket.on('room_message', (msg) => {
+        console.log(msg);
+        const message = document.createElement('p');
+        message.innerText = msg;
+        space.append(message);
+      });
+    </script>
+  </body>
+</html>
