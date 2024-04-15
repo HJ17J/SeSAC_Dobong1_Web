@@ -17,26 +17,26 @@ app.get('/prac2', (req, res) => {
 });
 
 // prac1 socket 연결
-// io.on('connection', (socket) => {
-//   socket.on('btn_click', (btnName) => {
-//     let btnMsg = '';
-//     switch (btnName) {
-//       case 'hello':
-//         btnMsg = '안녕하세요.';
-//         break;
-//       case 'study':
-//         btnMsg = '공부합시다!';
-//         break;
-//       case 'bye':
-//         btnMsg = '잘가~';
-//         break;
-//       default:
-//         break;
-//     }
-//     console.log(`${btnName}: ${btnMsg}`);
-//     io.emit('send_msg', btnMsg);
-//   });
-// });
+io.on('connection', (socket) => {
+  socket.on('btn_click', (btnName) => {
+    let btnMsg = '';
+    switch (btnName) {
+      case 'hello':
+        btnMsg = '안녕하세요.';
+        break;
+      case 'study':
+        btnMsg = '공부합시다!';
+        break;
+      case 'bye':
+        btnMsg = '잘가~';
+        break;
+      default:
+        break;
+    }
+    console.log(`${btnName}: ${btnMsg}`);
+    io.emit('send_msg', btnMsg);
+  });
+});
 
 // prac2 socket 연결
 io.on('connection', (socket) => {
