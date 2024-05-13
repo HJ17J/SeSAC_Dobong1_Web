@@ -1,4 +1,4 @@
-package _02_Condition;
+package _02_control_statement;
 
 import java.util.Scanner;
 
