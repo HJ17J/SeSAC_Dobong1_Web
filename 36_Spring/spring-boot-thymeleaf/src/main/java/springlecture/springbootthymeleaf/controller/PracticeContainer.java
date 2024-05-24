@@ -2,6 +2,7 @@ package springlecture.springbootthymeleaf.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +55,14 @@ public class PracticeContainer {
   }
 
   @GetMapping("/prac04")
-  public String prac04() {
+  public String prac04(Model model) {
+//    생년월일 option 기본 데이터 전달
+//    int[] years = IntStream.rangeClosed(1970, 2024).toArray();
+//    int[] months = IntStream.rangeClosed(1, 12).toArray();
+//    int[] dates = IntStream.rangeClosed(1, 31).toArray();
+//    model.addAttribute("years", years);
+//    model.addAttribute("months", months);
+//    model.addAttribute("dates", dates);
     return "prac04";
   }
 
@@ -62,6 +70,8 @@ public class PracticeContainer {
   public String register(@RequestParam String name, @RequestParam String gender,
       @RequestParam int year, @RequestParam int month, @RequestParam int date,
       @RequestParam String[] interests, Model model) {
+//    interests 배열 요소 사이에 컴마 추가하여 String으로 반환
+//    String interest = String.join(",", interests);
     model.addAttribute("name", name);
     model.addAttribute("gender", gender);
     model.addAttribute("year", year);

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <h3>get 전송 (DTO 객체, @RequestBody)</h3>
+  <form action="/api/res7" method="post">
+    이름
+    <input name="name" type="text">
+    <br/>
+    나이
+    <input name="age" type="text">
+    <br/>
+    <button type="submit">등록</button>
+  </form>
+
+  <h3>post 전송 (DTO 객체, @RequestBody)</h3>
+  <form action="/api/res8" method="post">
+    이름
+    <input name="name" type="text">
+    <br/>
+    나이
+    <input name="age" type="text">
+    <br/>
+    <button type="submit">등록</button>
+  </form>
+
+  <h3>post 동적 폼 전송 (DTO 객체 + @RequestBody)</h3>
+  <form action="/api/res9" id="form_res9" method="post">
+    이름
+    <input name="name" type="text">
+    <br/>
+    나이
+    <input name="age" type="text">
+    <br/>
+    <button onclick="postRes9()" type="button">등록</button>
+  </form>
+
+  <h3>post 동적 폼 전송 (VO 객체 + @RequestBody)</h3>
+  <form action="/api/res10" id="form_res10" method="post">
+    이름
+    <input name="name" type="text">
+    <br/>
+    나이
+    <input name="age" type="text">
+    <br/>
+    <button onclick="postRes10()" type="button">등록</button>
+  </form>
+
+  <script>
+    function postRes9() {
+      const form = document.getElementById("form_res9");
+      const data = {
+        name: form.name.value,
+        age: form.age.value
+      }
+      axios.post("/api/res9", data).then((res) => console.log(res.data));
+    }
+
+    function postRes10() {
+      const form = document.getElementById("form_res10");
+      const data = {
+        name: form.name.value,
+        age: form.age.value
+      }
+      axios.post("/api/res10", data).then((res) => console.log(res.data));
+    }
+  </script>
+</body>
+</html>

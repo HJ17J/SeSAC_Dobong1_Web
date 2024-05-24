@@ -4,12 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springlecture.springbootthymeleaf.dto.UserDTO;
+import springlecture.springbootthymeleaf.dto.UserVO;
 
 @Controller
 @RequestMapping("/api")
@@ -69,4 +72,61 @@ public class ApiController {
     return "hello";
   }
 
+  @GetMapping("/registerDTO")
+  public String getRes5() {
+    return "registerView";
+  }
+
+  @PostMapping("/res5")
+  public String postRes5(@ModelAttribute UserDTO user, Model model) {
+    // @ModelAttribute
+    // 객체로 데이터를 전송받게끔 도와줌. 해당 객체의 setter를 이용해서 데이터를 매핑시킴
+    // url에 있는 데이터를 매핑
+    // 생략 가능
+    model.addAttribute("name", user.getName());
+    model.addAttribute("age", user.getAge());
+    return "res";
+  }
+
+  @GetMapping("/registerVO")
+  public String getRes6() {
+    return "registerView";
+  }
+
+  @PostMapping("/res6")
+  public String postRes6(@ModelAttribute UserVO user, Model model) {
+    model.addAttribute("name", user.getName());
+    model.addAttribute("age", user.getAge());
+    return "res";
+  }
+
+  @GetMapping("/res7")
+  public String postRes7(@RequestBody UserDTO user, Model model) {
+    // Get 요청이므로 RequestBody 없어서 에러남
+    model.addAttribute("name", user.getName());
+    model.addAttribute("age", user.getAge());
+    return "res";
+  }
+
+  @PostMapping("/res8")
+  public String postRes8(@RequestBody UserDTO user, Model model) {
+    // @RequestBody는 application/json 형태의 Content-Type을 매핑할 수 있음
+    // 일반 폼 전송의 Content-Type은 application/x-www-form-urlencoded이므로 에러남
+    model.addAttribute("name", user.getName());
+    model.addAttribute("age", user.getAge());
+    return "res";
+  }
+
+  @PostMapping("/res9")
+  @ResponseBody
+  public String postRes9(@RequestBody UserDTO user) {
+    return user.getName() + "님 환영합니다.";
+  }
+
+  @PostMapping("/res10")
+  @ResponseBody
+  public String postRes9(@RequestBody UserVO user) {
+    // @RequestBody는 dto 객체의 setter를 이용해서 매핑하지 않고 @RequestBody의 자체적인 메소드로 매핑함 (정상 작동)
+    return user.getName() + "님 환영합니다.";
+  }
 }
