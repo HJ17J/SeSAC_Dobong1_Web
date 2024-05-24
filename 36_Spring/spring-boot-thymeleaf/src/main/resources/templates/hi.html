@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+             <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+             <title>Hi</title>
+</head>
+<body>
+  <h1>안녕👋</h1>
+  <h2 th:text="'안녕하세요 ' + ${msg}"></h2>
+  <div th:utext="${msg2}"></div>
+
+  <input type="text" th:value="${msg}" />
+
+  <div th:if="${age} >= 20">성인입니다.</div>
+  <div th:unless="${age}>=20">미성년자입니다.</div>
+  <div th:if="${msg} == 'hello'">hello</div>
+
+  <div th:switch="${userType}">
+    <div th:case="Admin">권한이 있습니다.</div>
+    <div th:case="User">권한이 필요합니다.</div>
+    <div th:case="*">로그인이 필요합니다.</div>
+  <!--  th:case="*"는 default case를 의미함-->
+  </div>
+
+  <div th:each="fruit:${fruits}">
+    <div th:text="${fruit}"></div>
+  </div>
+  
+  <a href="https://www.naver.com">Naver</a>
+  <br>
+  <a th:href="@{{link}(link=${url})}">Google</a>
+  <br>
+  <a th:href="@{/test}">localhost:8080/test로 이동</a>
+
+  <div th:text="${hello.msg}"></div>
+</body>
+</html>
