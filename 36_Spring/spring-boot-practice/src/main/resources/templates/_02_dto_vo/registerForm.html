@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Register</title>
+  <style>
+    form {
+      border: 2px solid #b6b6b6;
+      width: 480px;
+      padding: 5px;
+    }
+
+    form * {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <form id="register-form">
+    이름&nbsp;
+    <input name="name" type="text">
+    <br>
+    성별&nbsp;
+    <input id="male" name="gender" type="radio" value="남자"> <label for="male">남자</label>
+    <input id="female" name="gender" type="radio" value="여자"> <label for="female">여자</label>
+    <br>
+    생년월일&nbsp;
+    <select name="birthYear">
+      <option th:each="year: ${#numbers.sequence(1980, 2024)}" th:text="${year}" th:value="${year}"></option>
+    </select> 년
+    <select name="birthMonth">
+      <option th:each="month: ${#numbers.sequence(1, 12)}" th:text="${month}" th:value="${month}"></option>
+    </select> 월
+    <select name="birthDate">
+      <option th:each="date: ${#numbers.sequence(1, 31)}" th:text="${date}" th:value="${date}"></option>
+    </select> 일
+    <br>
+    관심사&nbsp;
+    <input id="travel" name="interests" type="checkbox" value="여행"> <label for="travel">여행</label>
+    <input id="fashion" name="interests" type="checkbox" value="패션"> <label for="fashion">패션</label>
+    <input id="food" name="interests" type="checkbox" value="음식"> <label for="food">음식</label>
+    <br>
+    <button onclick="register()" type="button">전송</button>
+  </form>
+  <script>
+    function register() {
+      const form = document.querySelector("#register-form");
+      const data = {
+        name: form.name.value,
+        gender: form.gender.value,
+        birthday: Date.parse(form.birthYear.value + "-" + form.birthMonth.value + "-" + form.birthDate.value),
+        interests: form.interests.value
+      };
+      console.log(form.interests)
+      console.log(data);
+      axios.post("/user/register", data).then((res) => console.log(res));
+    }
+  </script>
+</body>
+</html>

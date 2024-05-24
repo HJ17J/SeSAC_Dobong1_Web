@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Form</title>
+</head>
+<body>
+  <h3>response1</h3>
+  <form action="/axios/response1" id="axios-form">
+    <input name="name" placeholder="이름" type="text"><br>
+    <input name="age" placeholder="나이" type="text"><br>
+    <button onclick="response1()" type="button">등록</button>
+  </form>
+  <h3>response2</h3>
+  <form action="/axios/response2" id="axios-form">
+    <input name="name" placeholder="이름" type="text"><br>
+    <input name="age" placeholder="나이" type="text"><br>
+    <button onclick="response2()" type="button">등록</button>
+  </form>
+  <h3>response3</h3>
+  <form action="/axios/response3" id="axios-form">
+    <input name="name" placeholder="이름" type="text"><br>
+    <input name="age" placeholder="나이" type="text"><br>
+    <button onclick="response3()" type="button">등록</button>
+  </form>
+  <h3>response4</h3>
+  <form action="/axios/response4" id="axios-form">
+    <input name="name" placeholder="이름" type="text"><br>
+    <input name="age" placeholder="나이" type="text"><br>
+    <button onclick="response4()" type="button">등록</button>
+  </form>
+  <h3>response5</h3>
+  <form action="/axios/response5" id="axios-form">
+    <input name="name" placeholder="이름" type="text"><br>
+    <input name="age" placeholder="나이" type="text"><br>
+    <button onclick="response5()" type="button">등록</button>
+  </form>
+  <script>
+    const form = document.querySelector("form");
+    console.log(form);
+
+    function response1() {
+
+      const data = {
+        name: form.name.value,
+        age: form.age.value
+      }
+      axios.get("/axios/response1", data).then((res) => alert(res));
+    }
+  </script>
+</body>
+</html>
