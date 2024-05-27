@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Board</title>
+  <style>
+    table, table * {
+      border: 1px solid black;
+    }
+    input:disabled{
+      border: none;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <form id="post-form">
+    <input type="text" name="title" id="title" placeholder="제목"><br>
+    <input type="text" name="content" id="content" placeholder="내용"><br>
+    <input type="text" name="writer" id="writer" placeholder="작성자"><br>
+    <button type="button" onclick="newPost()">작성</button>
+  </form>
+
+  <table>
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Id</th>
+      <th>제목</th>
+      <th>내용</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>수정</th>
+      <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="post: ${posts}">
+        <td th:text="${post.getId()}" ></td>
+        <td th:text="${post.getId()}"></td>
+        <td><input type="text" id="updateTitle" name="title" th:value="${post.getTitle()}" disabled></td>
+        <td><input type="text" id="updateContent" name="content" th:value="${post.getContent()}" disabled></td>
+        <td><input type="text" id="updateWriter" name="writer" th:value="${post.getWriter()}" disabled></td>
+        <td th:text="${post.getRegistered()}"></td>
+        <td><button type="button" id="upBtn" th:onclick="unlockInput([[${post.getId()}]])">수정</button></td>
+        <td><button th:postId="${post.getId()}" th:onclick="deletePost(this.getAttribute('postId'))">삭제</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    function newPost(){
+      const form = document.querySelector("#post-form");
+      const data = {
+        title: form.title.value,
+        content: form.content.value,
+        writer: form.writer.value,
+        registered: Date.now()
+      };
+      console.log(data);
+      axios({
+        method: "post",
+        url: "",
+        data: data
+      }).then(res => {
+        console.log(res);
+        if(res.data){
+          alert("게시글이 등록되었습니다.");
+        }else{
+          alert("게시글을 작성하지 못했습니다.");
+        }
+        document.location.reload();
+      });
+    }
+
+    function unlockInput(id){
+      const iTitle = document.querySelector('#updateTitle');
+      const iContent = document.querySelector('#updateContent');
+      const iWriter = document.querySelector('#updateWriter');
+      const upBtn = document.querySelector("#upBtn");
+
+      iTitle.disabled = false;
+      iContent.disabled = false;
+      iWriter.disabled = false;
+      // 버튼 삭제 후 등록 버튼 추가?
+      console.log(upBtn.parentNode);
+      console.log(upBtn.parentElement);
+      const btnTd = upBtn.parentElement;
+      const patchBtn = document.createElement('button');
+      patchBtn.type='button';
+      patchBtn.innerText='등록';
+      btnTd.append(patchBtn);
+      upBtn.remove();
+
+
+      axios.get('/board/'+id)
+      .then(res => {
+        iTitle.value = res.data.title;
+        iContent.value = res.data.content;
+        iWriter.value = res.data.writer;
+      });
+
+
+      // axios({
+      //   method:'patch',
+      //   url:'/board/'+id,
+      //   data:{
+      //     title: iTitle.value,
+      //     content: iContent.value,
+      //     writer: iWriter.value,
+      //   },
+      // })
+    }
+
+    function deletePost(id){
+      const cfDelete = confirm("삭제하시겠습니까?");
+      if(cfDelete){
+        axios({
+          method:"delete",
+          url:"/board/"+id,
+        }).then(res=>{
+          console.log(res);
+          if(res.data){
+            alert("삭제되었습니다.");
+          }else{
+            alert("삭제하지 못했습니다.");
+          }
+          document.location.reload();
+        });
+      }
+    }
+  </script>
+</body>
+</html>

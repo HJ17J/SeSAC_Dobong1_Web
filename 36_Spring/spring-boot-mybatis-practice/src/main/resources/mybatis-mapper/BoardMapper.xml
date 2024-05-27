@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="practice.spring_boot_mybatis_practice.mapper.BoardMapper">
+  <select id="getAllPost" resultType="practice.spring_boot_mybatis_practice.dto.BoardDTO">
+    SELECT Board.* FROM BOARD
+  </select>
+
+  <insert id="newPost" parameterType="practice.spring_boot_mybatis_practice.dto.BoardDTO">
+    INSERT INTO Board(title, content, writer, registered) VALUES(#{title}, #{content}, #{writer}, #{registered})
+  </insert>
+
+  <delete id="deletePost" parameterType="java.lang.Integer" >
+    DELETE FROM BOARD WHERE ID=#{id}
+  </delete>
+
+  <select id="getPostById" parameterType="java.lang.Integer">
+    SELECT * FROM BOARD WHERE ID=#{id}
+  </select>
+
+  <update id="updatePost" parameterType="practice.spring_boot_mybatis_practice.dto.BoardDTO">
+    UPDATE BOARD SET title=#title, content=#content, writer=#{writer} WHERE ID=#{id}
+  </update>
+</mapper>
