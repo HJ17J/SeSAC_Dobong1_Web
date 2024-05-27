@@ -4,4 +4,16 @@
   <select id="retrieveAll" resultType="lecture.spring_boot_mybatis.domain.User">
     SELECT user.* FROM user
   </select>
+
+  <insert id="insertUser" parameterType="map">
+    INSERT INTO USER(name, nickname) VALUES(#{name}, #{nickname})
+  </insert>
+
+  <update id="updateUser" parameterType="map">
+    UPDATE USER SET name=#{name}, nickname=#{nickname} WHERE ID=#{id}
+  </update>
+
+  <delete id="deleteUser" parameterType="int">
+    DELETE FROM USER WHERE ID=${id}
+  </delete>
 </mapper>
