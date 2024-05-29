@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Board</title>
+  <style>
+    form {
+      margin: 10px 0;
+    }
+
+    table {
+      border: 1px solid black;
+    }
+
+    table thead {
+      background-color: beige;
+    }
+  </style>
+</head>
+<body>
+  <form id="post-form">
+    <input id="title" name="title" placeholder="제목을 작성해주세요." type="text"><br>
+    <input id="content" name="content" placeholder="내용을 작성해주세요." type="text"><br>
+    <input id="writer" name="writer" placeholder="작성자를 작성해주세요." type="text"><br>
+    <button id="sendBtn" onclick="sendPost()" type="button">작성</button>
+  </form>
+  <table>
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>ID</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>수정</th>
+      <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+      <td th:text="${post.getId()}"></td>
+      <td th:text="${post.getId()}"></td>
+      <td th:text="${post.getTitle()}"></td>
+      <td th:text="${post.getWriter()}"></td>
+      <td th:text="${post.getRegistered()}"></td>
+      <td>
+        <button type="button">수정</button>
+      </td>
+      <td>
+        <button th:onclick="delPost([[${post.getId()}]])" type="button">삭제</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <script>
+    const form = document.forms['post-form'];
+
+    function sendPost() {
+      const data = {
+        title: form.title.value,
+        content: form.content.value,
+        writer: form.writer.value
+      }
+      axios({
+        url: "/board",
+        method: "post",
+        data: data
+      }).then(res => console.log(res));
+    }
+
+    async function delPost(id) {
+      const cfDel = confirm("삭제하시겠습니까?");
+      if (cfDel) {
+        try {
+          await axios({
+            url: "/boards/" + id,
+            method: "delete"
+          }).then(res => console.log(res));
+        } catch (e) {
+          alert("게시글을 삭제하지 못했습니다.");
+        }
+      }
+    }
+  </script>
+</body>
+</html>
